@@ -33,15 +33,15 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Get the image from the POST request
-    image_data = request.files['image']
-    
-    # Save the image to a temporary file
-    image_path = 'temp.jpg'
-    image_data.save(image_path)
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image provided'}), 400
+
+    image_file = request.files['image']
+    if image_file.filename == '':
+        return jsonify({'error': 'No image selected'}), 400
 
     # Load and preprocess the image
-    img = image.load_img(image_path, target_size=(224, 224))
+    img = image.load_img(image_file, target_size=(224, 224))
     img_array = image.img_to_array(img)
     img_array_expanded_dims = np.expand_dims(img_array, axis=0)
     img_preprocessed = img_array_expanded_dims / 255.0
@@ -62,9 +62,6 @@ def predict():
     # Invert the class indices dictionary to map from index to class name
     inverse_map = {v: k for k, v in class_indices.items()}
     predicted_class_name = inverse_map[predicted_class_index[0]]
-
-    # Delete the temporary image file
-    os.remove(image_path)
 
     return jsonify({'prediction': predicted_class_name})
 
