@@ -1,5 +1,6 @@
 click
 Flask
+Pillow
 Gunicorn
 importlib-metadata
 itsdangerous
