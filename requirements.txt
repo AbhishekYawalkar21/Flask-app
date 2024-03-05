@@ -1,6 +1,6 @@
 click
 Flask
-gunicorn
+Gunicorn
 importlib-metadata
 itsdangerous
 Jinja2
