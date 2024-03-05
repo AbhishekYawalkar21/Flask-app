@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from tensorflow.keras.preprocessing import image
 from tensorflow.lite.python.interpreter import Interpreter
+from io import BytesIO
 import numpy as np
 
 app = Flask(__name__)
@@ -40,8 +41,11 @@ def predict():
     if image_file.filename == '':
         return jsonify({'error': 'No image selected'}), 400
 
+    # Read the image data and create a BytesIO object
+    image_data = BytesIO(image_file.read())
+
     # Load and preprocess the image
-    img = image.load_img(image_file, target_size=(224, 224))
+    img = image.load_img(image_data, target_size=(224, 224))
     img_array = image.img_to_array(img)
     img_array_expanded_dims = np.expand_dims(img_array, axis=0)
     img_preprocessed = img_array_expanded_dims / 255.0
