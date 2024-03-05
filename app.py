@@ -31,7 +31,7 @@ class_indices = {
 def home():
     return "Welcome to the Tomato Crop Disease Identification Flask App!"
 
-@app.route('/predict', methods=['GET'])
+@app.route('/predict', methods=['POST'])
 def predict():
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'}), 400
