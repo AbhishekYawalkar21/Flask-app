@@ -34,8 +34,11 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     # Get the image from the POST request
-    data = request.get_json(force=True)
-    image_path = data['image']
+    image_data = request.files['image']
+    
+    # Save the image to a temporary file
+    image_path = 'temp.jpg'
+    image_data.save(image_path)
 
     # Load and preprocess the image
     img = image.load_img(image_path, target_size=(224, 224))
@@ -59,6 +62,9 @@ def predict():
     # Invert the class indices dictionary to map from index to class name
     inverse_map = {v: k for k, v in class_indices.items()}
     predicted_class_name = inverse_map[predicted_class_index[0]]
+
+    # Delete the temporary image file
+    os.remove(image_path)
 
     return jsonify({'prediction': predicted_class_name})
 
