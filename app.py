@@ -16,16 +16,16 @@ output_details = interpreter.get_output_details()
 
 # Manually define the class indices based on your training dataset
 class_indices = {
-    'Tomato___Bacterial_spot': 0,
-    'Tomato___Early_blight': 1,
-    'Tomato___Late_blight': 2,
-    'Tomato___Leaf_Mold': 3,
-    'Tomato___Septoria_leaf_spot': 4,
-    'Tomato___Spider_mites Two-spotted_spider_mite': 5,
-    'Tomato___Target_Spot': 6,
-    'Tomato_Yellow_Leaf_Curl_Virus': 7,
-    'Tomato_mosaic_virus': 8,
-    'Tomato___healthy': 9
+    'Bacterial Spot': 0,
+    'Early Blight': 1,
+    'Late Blight': 2,
+    'Leaf Mold': 3,
+    'Septoria leaf spot': 4,
+    'Two-spotted spider mite': 5,
+    'Target_Spot': 6,
+    'TomatoYellow Leaf Curl Virus': 7,
+    'Tomato Mosaic Virus': 8,
+    'Healthy': 9
 }
 
 @app.route('/', methods=['GET'])
