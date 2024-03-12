@@ -3,8 +3,10 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.lite.python.interpreter import Interpreter
 from io import BytesIO
 import numpy as np
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Load the trained model (replace 'model.tflite' with the path to your saved model)
 interpreter = Interpreter(model_path='model_best.tflite')

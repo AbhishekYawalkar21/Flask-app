@@ -12,3 +12,4 @@ waitress
 tensorflow
 numpy
 keras
+flask-cors
