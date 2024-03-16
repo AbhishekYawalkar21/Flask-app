@@ -65,11 +65,14 @@ def predict():
     # Get the predicted class index
     predicted_class_index = np.argmax(prediction, axis=1)
 
+    # Get the confidence level of the prediction
+    confidence_level = np.max(prediction) * 100
+
     # Invert the class indices dictionary to map from index to class name
     inverse_map = {v: k for k, v in class_indices.items()}
     predicted_class_name = inverse_map[predicted_class_index[0]]
 
-    return jsonify({'prediction': predicted_class_name})
+    return jsonify({'prediction': predicted_class_name, 'confidence': f'{confidence_level:.2f}%'})
 
 if __name__ == '__main__':
     app.run(debug=True)
