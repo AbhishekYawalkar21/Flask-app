@@ -22,10 +22,10 @@ class_indices = {
     'Early Blight': 1,
     'Late Blight': 2,
     'Leaf Mold': 3,
-    'Septoria leaf spot': 4,
-    'Two-spotted spider mite': 5,
-    'Target_Spot': 6,
-    'TomatoYellow Leaf Curl Virus': 7,
+    'Septoria Leaf Spot': 4,
+    'Tomato Spotted Wilt': 5,
+    'Buckeye Rot': 6,
+    'Tomato Yellow Leaf Curl': 7,
     'Tomato Mosaic Virus': 8,
     'Healthy': 9
 }
